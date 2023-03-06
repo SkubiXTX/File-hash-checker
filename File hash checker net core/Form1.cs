@@ -65,8 +65,8 @@ namespace File_hash_checker_net_core
                 plik = openFileDialog1.FileName;
                 folder = System.IO.Path.GetDirectoryName(plik);
                 samplik = System.IO.Path.GetFileName(plik);
-                Debug.WriteLine(plik);
-                Debug.WriteLine(folder);
+                //Debug.WriteLine(plik);
+                //Debug.WriteLine(folder);
 
                 toolStripProgressBar1.Visible = true;
                 toolStripStatusLabel1.Visible = true;
@@ -93,27 +93,11 @@ namespace File_hash_checker_net_core
 
             if (File.Exists(plik))
             {
-                var file = new FileInfo(plik);
-
-                using (FileStream fs = new FileStream(plik, FileMode.Open, FileAccess.Read))
-                {
-                    SHA256 sha256 = SHA256.Create();
-                    Byte[] buffer = sha256.ComputeHash(fs);
-                    sha256.Clear();
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < buffer.Length; i++)
-                    {
-                        sb.Append(buffer[i].ToString("x2"));
-                    }
                     hash256 = CalculateSHA256(plik);
 
                     hash1 = CalculateSHA1(plik);
 
                     hashmd5 = CalculateMD5(plik);
-
-
-                }
-
             }
 
         }
@@ -128,7 +112,7 @@ namespace File_hash_checker_net_core
 
         private void bgwObliczHashe_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            toolStripProgressBar1.Value += 1;
+
         }
     }
 }
