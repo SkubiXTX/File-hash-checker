@@ -17,6 +17,42 @@ namespace File_hash_checker_net_core
             InitializeComponent();
         }
 
+        static string CalculateMD5(string filename)
+        {
+            using (var md5 = MD5.Create())
+            {
+                using (var stream = File.OpenRead(filename))
+                {
+                    var hash = md5.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                }
+            }
+        }
+
+        static string CalculateSHA1(string filename)
+        {
+            using (var sha1 = SHA1.Create())
+            {
+                using (var stream = File.OpenRead(filename))
+                {
+                    var hash = sha1.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                }
+            }
+        }
+
+        static string CalculateSHA256(string filename)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                using (var stream = File.OpenRead(filename))
+                {
+                    var hash = sha256.ComputeHash(stream);
+                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                }
+            }
+        }
+
         private void btnOtworz_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -57,42 +93,23 @@ namespace File_hash_checker_net_core
 
             if (File.Exists(plik))
             {
-
-                Byte[] buffer = null;
                 var file = new FileInfo(plik);
 
                 using (FileStream fs = new FileStream(plik, FileMode.Open, FileAccess.Read))
                 {
                     SHA256 sha256 = SHA256.Create();
-                    buffer = sha256.ComputeHash(fs);
+                    Byte[] buffer = sha256.ComputeHash(fs);
                     sha256.Clear();
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < buffer.Length; i++)
                     {
                         sb.Append(buffer[i].ToString("x2"));
                     }
-                    hash256 = sb.ToString();
+                    hash256 = CalculateSHA256(plik);
 
-                    SHA1 sha1 = SHA1.Create();
-                    buffer = sha1.ComputeHash(fs);
-                    sha1.Clear();
-                    StringBuilder sb2 = new StringBuilder();
-                    for (int i = 0; i < buffer.Length; i++)
-                    {
-                        sb2.Append(buffer[i].ToString("x2"));
-                    }
-                    hash1 = sb2.ToString();
+                    hash1 = CalculateSHA1(plik);
 
-
-                    MD5 md5 = MD5.Create();
-                    buffer = md5.ComputeHash(fs);
-                    md5.Clear();
-                    StringBuilder sb3 = new StringBuilder();
-                    for (int i = 0; i < buffer.Length; i++)
-                    {
-                        sb3.Append(buffer[i].ToString("x2"));
-                    }
-                    hashmd5 = sb3.ToString();
+                    hashmd5 = CalculateMD5(plik);
 
 
                 }
