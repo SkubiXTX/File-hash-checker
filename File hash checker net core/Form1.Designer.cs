@@ -41,6 +41,9 @@
             txtHashWklejony = new TextBox();
             cmbHashe = new ComboBox();
             btnPorownaj = new Button();
+            bgwFolder1 = new System.ComponentModel.BackgroundWorker();
+            bgwFolder2 = new System.ComponentModel.BackgroundWorker();
+            lblLiczbaPlikow = new Label();
             colPlik = new DataGridViewTextBoxColumn();
             colMD5 = new DataGridViewTextBoxColumn();
             colSHA1 = new DataGridViewTextBoxColumn();
@@ -97,7 +100,7 @@
             // lblFolder
             // 
             lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(279, 16);
+            lblFolder.Location = new Point(315, 16);
             lblFolder.Name = "lblFolder";
             lblFolder.Size = new Size(50, 20);
             lblFolder.TabIndex = 3;
@@ -153,6 +156,25 @@
             btnPorownaj.UseVisualStyleBackColor = true;
             btnPorownaj.Click += btnPorownaj_Click;
             // 
+            // bgwFolder1
+            // 
+            bgwFolder1.DoWork += bgwFolder1_DoWork;
+            bgwFolder1.RunWorkerCompleted += bgwFolder1_RunWorkerCompleted;
+            // 
+            // bgwFolder2
+            // 
+            bgwFolder2.DoWork += bgwFolder2_DoWork;
+            bgwFolder2.RunWorkerCompleted += bgwFolder2_RunWorkerCompleted;
+            // 
+            // lblLiczbaPlikow
+            // 
+            lblLiczbaPlikow.AutoSize = true;
+            lblLiczbaPlikow.Location = new Point(259, 16);
+            lblLiczbaPlikow.Name = "lblLiczbaPlikow";
+            lblLiczbaPlikow.Size = new Size(50, 20);
+            lblLiczbaPlikow.TabIndex = 9;
+            lblLiczbaPlikow.Text = "label1";
+            // 
             // colPlik
             // 
             colPlik.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -194,6 +216,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1248, 450);
+            Controls.Add(lblLiczbaPlikow);
             Controls.Add(btnPorownaj);
             Controls.Add(cmbHashe);
             Controls.Add(txtHashWklejony);
@@ -227,6 +250,9 @@
         private TextBox txtHashWklejony;
         private ComboBox cmbHashe;
         private Button btnPorownaj;
+        private System.ComponentModel.BackgroundWorker bgwFolder1;
+        private System.ComponentModel.BackgroundWorker bgwFolder2;
+        private Label lblLiczbaPlikow;
         private DataGridViewTextBoxColumn colPlik;
         private DataGridViewTextBoxColumn colMD5;
         private DataGridViewTextBoxColumn colSHA1;

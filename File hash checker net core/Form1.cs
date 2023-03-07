@@ -3,6 +3,7 @@ using System.Diagnostics.Metrics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using static System.Net.WebRequestMethods;
 
 namespace File_hash_checker_net_core
 {
@@ -12,6 +13,9 @@ namespace File_hash_checker_net_core
         private string samplik = "";
         private string folder = "";
         public string hash256 = "", hash1 = "", hashmd5 = "";
+        public Int32 licz = 0;
+        public Int32 licz2 = 0;
+        public string[] fileEntries = new string[10000];
 
         public frmOknoGl()
         {
@@ -22,7 +26,7 @@ namespace File_hash_checker_net_core
         {
             using (var md5 = MD5.Create())
             {
-                using (var stream = File.OpenRead(filename))
+                using (var stream = System.IO.File.OpenRead(filename))
                 {
                     var hash = md5.ComputeHash(stream);
                     return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
@@ -34,7 +38,7 @@ namespace File_hash_checker_net_core
         {
             using (var sha1 = SHA1.Create())
             {
-                using (var stream = File.OpenRead(filename))
+                using (var stream = System.IO.File.OpenRead(filename))
                 {
                     var hash = sha1.ComputeHash(stream);
                     return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
@@ -46,7 +50,7 @@ namespace File_hash_checker_net_core
         {
             using (var sha256 = SHA256.Create())
             {
-                using (var stream = File.OpenRead(filename))
+                using (var stream = System.IO.File.OpenRead(filename))
                 {
                     var hash = sha256.ComputeHash(stream);
                     return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
@@ -71,13 +75,15 @@ namespace File_hash_checker_net_core
 
                 toolStripProgressBar1.Visible = true;
                 toolStripStatusLabel1.Visible = true;
-                bgwObliczHashe.RunWorkerAsync();
+                bgwObliczHashe.RunWorkerAsync(plik);
             }
         }
 
         private void btnFolder_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+            licz = 0;
+            dgwHashe.Rows.Clear();
 
             if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -85,27 +91,43 @@ namespace File_hash_checker_net_core
                 Debug.WriteLine(folder);
                 lblFolder.Text = folder;
 
+                DirectoryInfo info = new DirectoryInfo(folder);
+
+                FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
+
+                foreach (FileInfo file in files)
+                {
+                    fileEntries[licz] = folder + "\\" + file.Name;
+                    licz++;
+                }
+
+                lblLiczbaPlikow.Text = licz.ToString();
+                bgwFolder1.RunWorkerAsync(fileEntries[licz2]);
+
+                //Console.Beep();
+
             }
 
         }
 
         private void bgwObliczHashe_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            String filearg = (String)e.Argument;
 
-            if (File.Exists(plik))
+            if (System.IO.File.Exists(filearg))
             {
-                hash256 = CalculateSHA256(plik);
+                hash256 = CalculateSHA256(filearg);
 
-                hash1 = CalculateSHA1(plik);
+                hash1 = CalculateSHA1(filearg);
 
-                hashmd5 = CalculateMD5(plik);
+                hashmd5 = CalculateMD5(filearg);
             }
 
         }
 
         private void bgwObliczHashe_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            lblFolder.Text = folder;
+            //lblFolder.Text = folder;
             dgwHashe.Rows.Add(plik, hashmd5, hash1, hash256);
             toolStripStatusLabel1.Visible = false;
             toolStripProgressBar1.Visible = false;
@@ -187,6 +209,59 @@ namespace File_hash_checker_net_core
         {
             cmbHashe.SelectedIndex = 0;
             dgwHashe.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgwHashe.RowTemplate.Height = 96;
+        }
+
+        private void bgwFolder1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            String filearg = (String)e.Argument;
+
+            if (System.IO.File.Exists(filearg))
+            {
+                hash256 = CalculateSHA256(filearg);
+
+                hash1 = CalculateSHA1(filearg);
+
+                hashmd5 = CalculateMD5(filearg);
+            }
+        }
+
+        private void bgwFolder1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
+            dgwHashe.Rows.Add(fileEntries[licz2], hashmd5, hash1, hash256);
+            licz2++;
+
+            if (licz2 < licz)
+            {
+                bgwFolder2.RunWorkerAsync(fileEntries[licz2]);
+            }
+
+        }
+
+        private void bgwFolder2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            String filearg = (String)e.Argument;
+
+            if (System.IO.File.Exists(filearg))
+            {
+                hash256 = CalculateSHA256(filearg);
+
+                hash1 = CalculateSHA1(filearg);
+
+                hashmd5 = CalculateMD5(filearg);
+            }
+        }
+
+        private void bgwFolder2_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            dgwHashe.Rows.Add(fileEntries[licz2], hashmd5, hash1, hash256);
+            licz2++;
+
+            if (licz2 < licz)
+            {
+                bgwFolder1.RunWorkerAsync(fileEntries[licz2]);
+            }
         }
     }
 }
