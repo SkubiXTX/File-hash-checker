@@ -1,6 +1,6 @@
 ﻿namespace File_hash_checker_net_core
 {
-    partial class Form1
+    partial class frmOknoGl
     {
         /// <summary>
         ///  Required designer variable.
@@ -42,6 +42,9 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripProgressBar1 = new ToolStripProgressBar();
+            txtHashWklejony = new TextBox();
+            cmbHashe = new ComboBox();
+            btnPorownaj = new Button();
             ((System.ComponentModel.ISupportInitialize)dgwHashe).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -89,6 +92,7 @@
             dgwHashe.RowTemplate.Height = 29;
             dgwHashe.Size = new Size(1224, 322);
             dgwHashe.TabIndex = 2;
+            dgwHashe.CellContentClick += dgwHashe_CellContentClick;
             // 
             // colPlik
             // 
@@ -139,9 +143,9 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
-            statusStrip1.Location = new Point(0, 424);
+            statusStrip1.Location = new Point(0, 428);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1248, 26);
+            statusStrip1.Size = new Size(1248, 22);
             statusStrip1.TabIndex = 5;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -159,18 +163,48 @@
             toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
             toolStripProgressBar1.Visible = false;
             // 
-            // Form1
+            // txtHashWklejony
+            // 
+            txtHashWklejony.Location = new Point(12, 387);
+            txtHashWklejony.Name = "txtHashWklejony";
+            txtHashWklejony.Size = new Size(694, 27);
+            txtHashWklejony.TabIndex = 6;
+            // 
+            // cmbHashe
+            // 
+            cmbHashe.FormattingEnabled = true;
+            cmbHashe.Items.AddRange(new object[] { "MD5", "SHA1", "SHA256" });
+            cmbHashe.Location = new Point(712, 386);
+            cmbHashe.Name = "cmbHashe";
+            cmbHashe.Size = new Size(151, 28);
+            cmbHashe.TabIndex = 7;
+            // 
+            // btnPorownaj
+            // 
+            btnPorownaj.Location = new Point(869, 385);
+            btnPorownaj.Name = "btnPorownaj";
+            btnPorownaj.Size = new Size(94, 29);
+            btnPorownaj.TabIndex = 8;
+            btnPorownaj.Text = "Porównaj";
+            btnPorownaj.UseVisualStyleBackColor = true;
+            btnPorownaj.Click += btnPorownaj_Click;
+            // 
+            // frmOknoGl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1248, 450);
+            Controls.Add(btnPorownaj);
+            Controls.Add(cmbHashe);
+            Controls.Add(txtHashWklejony);
             Controls.Add(statusStrip1);
             Controls.Add(lblFolder);
             Controls.Add(dgwHashe);
             Controls.Add(btnFolder);
             Controls.Add(btnOtworz);
-            Name = "Form1";
+            Name = "frmOknoGl";
             Text = "Form1";
+            Load += frmOknoGl_Load;
             ((System.ComponentModel.ISupportInitialize)dgwHashe).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
@@ -194,5 +228,8 @@
         private StatusStrip statusStrip1;
         private ToolStripProgressBar toolStripProgressBar1;
         private ToolStripStatusLabel toolStripStatusLabel1;
+        private TextBox txtHashWklejony;
+        private ComboBox cmbHashe;
+        private Button btnPorownaj;
     }
 }
