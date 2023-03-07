@@ -106,7 +106,7 @@ namespace File_hash_checker_net_core
         private void bgwObliczHashe_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             lblFolder.Text = folder;
-            dgwHashe.Rows.Add(samplik, hashmd5, hash1, hash256);
+            dgwHashe.Rows.Add(plik, hashmd5, hash1, hash256);
             toolStripStatusLabel1.Visible = false;
             toolStripProgressBar1.Visible = false;
         }
@@ -127,13 +127,13 @@ namespace File_hash_checker_net_core
             wybranywiersz = dgwHashe.SelectedRows;
 
             if (wybranywiersz.Count != 0)
-            { 
+            {
                 switch (cmbHashe.SelectedIndex)
                 {
                     case 0:
-                        if(txtHashWklejony.Text.Equals(wybranywiersz[0].Cells[1].Value.ToString()))
+                        if (txtHashWklejony.Text.Equals(wybranywiersz[0].Cells[1].Value.ToString()))
                         {
-                            MessageBox.Show("Hash identyczny","Komunikat",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Hash identyczny", "Komunikat", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
@@ -180,12 +180,13 @@ namespace File_hash_checker_net_core
                 MessageBox.Show("Zaznacz ca³y wiersz", "Komunikat", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-            Console.Beep();
+            //Console.Beep();
         }
 
         private void frmOknoGl_Load(object sender, EventArgs e)
         {
             cmbHashe.SelectedIndex = 0;
+            dgwHashe.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
     }
 }

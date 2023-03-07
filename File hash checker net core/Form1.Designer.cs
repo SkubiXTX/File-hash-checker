@@ -34,10 +34,6 @@
             folderBrowserDialog1 = new FolderBrowserDialog();
             btnFolder = new Button();
             dgwHashe = new DataGridView();
-            colPlik = new DataGridViewTextBoxColumn();
-            colMD5 = new DataGridViewTextBoxColumn();
-            colSHA1 = new DataGridViewTextBoxColumn();
-            colSHA256 = new DataGridViewTextBoxColumn();
             lblFolder = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
@@ -45,6 +41,10 @@
             txtHashWklejony = new TextBox();
             cmbHashe = new ComboBox();
             btnPorownaj = new Button();
+            colPlik = new DataGridViewTextBoxColumn();
+            colMD5 = new DataGridViewTextBoxColumn();
+            colSHA1 = new DataGridViewTextBoxColumn();
+            colSHA256 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgwHashe).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -93,42 +93,6 @@
             dgwHashe.Size = new Size(1224, 322);
             dgwHashe.TabIndex = 2;
             dgwHashe.CellContentClick += dgwHashe_CellContentClick;
-            // 
-            // colPlik
-            // 
-            colPlik.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colPlik.HeaderText = "Plik";
-            colPlik.MinimumWidth = 6;
-            colPlik.Name = "colPlik";
-            colPlik.ReadOnly = true;
-            colPlik.Width = 61;
-            // 
-            // colMD5
-            // 
-            colMD5.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colMD5.HeaderText = "MD5";
-            colMD5.MinimumWidth = 6;
-            colMD5.Name = "colMD5";
-            colMD5.ReadOnly = true;
-            colMD5.Width = 70;
-            // 
-            // colSHA1
-            // 
-            colSHA1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colSHA1.HeaderText = "SHA1";
-            colSHA1.MinimumWidth = 6;
-            colSHA1.Name = "colSHA1";
-            colSHA1.ReadOnly = true;
-            colSHA1.Width = 75;
-            // 
-            // colSHA256
-            // 
-            colSHA256.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            colSHA256.HeaderText = "SHA256";
-            colSHA256.MinimumWidth = 6;
-            colSHA256.Name = "colSHA256";
-            colSHA256.ReadOnly = true;
-            colSHA256.Width = 91;
             // 
             // lblFolder
             // 
@@ -189,6 +153,42 @@
             btnPorownaj.UseVisualStyleBackColor = true;
             btnPorownaj.Click += btnPorownaj_Click;
             // 
+            // colPlik
+            // 
+            colPlik.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            colPlik.HeaderText = "Plik";
+            colPlik.MinimumWidth = 20;
+            colPlik.Name = "colPlik";
+            colPlik.ReadOnly = true;
+            colPlik.Width = 300;
+            // 
+            // colMD5
+            // 
+            colMD5.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colMD5.HeaderText = "MD5";
+            colMD5.MinimumWidth = 6;
+            colMD5.Name = "colMD5";
+            colMD5.ReadOnly = true;
+            colMD5.Width = 70;
+            // 
+            // colSHA1
+            // 
+            colSHA1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colSHA1.HeaderText = "SHA1";
+            colSHA1.MinimumWidth = 6;
+            colSHA1.Name = "colSHA1";
+            colSHA1.ReadOnly = true;
+            colSHA1.Width = 75;
+            // 
+            // colSHA256
+            // 
+            colSHA256.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colSHA256.HeaderText = "SHA256";
+            colSHA256.MinimumWidth = 6;
+            colSHA256.Name = "colSHA256";
+            colSHA256.ReadOnly = true;
+            colSHA256.Width = 91;
+            // 
             // frmOknoGl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -221,15 +221,15 @@
         private Button btnFolder;
         private DataGridView dgwHashe;
         private Label lblFolder;
-        private DataGridViewTextBoxColumn colPlik;
-        private DataGridViewTextBoxColumn colMD5;
-        private DataGridViewTextBoxColumn colSHA1;
-        private DataGridViewTextBoxColumn colSHA256;
         private StatusStrip statusStrip1;
         private ToolStripProgressBar toolStripProgressBar1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private TextBox txtHashWklejony;
         private ComboBox cmbHashe;
         private Button btnPorownaj;
+        private DataGridViewTextBoxColumn colPlik;
+        private DataGridViewTextBoxColumn colMD5;
+        private DataGridViewTextBoxColumn colSHA1;
+        private DataGridViewTextBoxColumn colSHA256;
     }
 }
