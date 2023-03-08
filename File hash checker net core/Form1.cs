@@ -16,6 +16,7 @@ namespace File_hash_checker_net_core
         public Int32 licz = 0;
         public Int32 licz2 = 0;
         public string[] fileEntries = new string[10000];
+        public string[] fileNames = new string[10000];
 
         public frmOknoGl()
         {
@@ -98,10 +99,13 @@ namespace File_hash_checker_net_core
                 foreach (FileInfo file in files)
                 {
                     fileEntries[licz] = folder + "\\" + file.Name;
+                    fileNames[licz] = file.Name;
                     licz++;
                 }
 
-                lblLiczbaPlikow.Text = licz.ToString();
+                toolStripProgressBar1.Visible = true;
+                toolStripStatusLabel1.Visible = true;
+                ttslLicznik.Visible = true;
                 bgwFolder1.RunWorkerAsync(fileEntries[licz2]);
 
                 //Console.Beep();
@@ -229,12 +233,19 @@ namespace File_hash_checker_net_core
         private void bgwFolder1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
 
-            dgwHashe.Rows.Add(fileEntries[licz2], hashmd5, hash1, hash256);
+            dgwHashe.Rows.Add(fileNames[licz2], hashmd5, hash1, hash256);
             licz2++;
 
             if (licz2 < licz)
             {
+                ttslLicznik.Text = licz2.ToString() + "/" + licz.ToString();
                 bgwFolder2.RunWorkerAsync(fileEntries[licz2]);
+            }
+            else
+            {
+                toolStripStatusLabel1.Visible = false;
+                toolStripProgressBar1.Visible = false;
+                ttslLicznik.Visible = false;
             }
 
         }
@@ -251,16 +262,24 @@ namespace File_hash_checker_net_core
 
                 hashmd5 = CalculateMD5(filearg);
             }
+
         }
 
         private void bgwFolder2_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            dgwHashe.Rows.Add(fileEntries[licz2], hashmd5, hash1, hash256);
+            dgwHashe.Rows.Add(fileNames[licz2], hashmd5, hash1, hash256);
             licz2++;
 
             if (licz2 < licz)
             {
+                ttslLicznik.Text = licz2.ToString() + "/" + licz.ToString();
                 bgwFolder1.RunWorkerAsync(fileEntries[licz2]);
+            }
+            else
+            {
+                toolStripStatusLabel1.Visible = false;
+                toolStripProgressBar1.Visible = false;
+                ttslLicznik.Visible = false;
             }
         }
     }

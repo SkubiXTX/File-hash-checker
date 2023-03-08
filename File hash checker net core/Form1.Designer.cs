@@ -34,20 +34,20 @@
             folderBrowserDialog1 = new FolderBrowserDialog();
             btnFolder = new Button();
             dgwHashe = new DataGridView();
+            colPlik = new DataGridViewTextBoxColumn();
+            colMD5 = new DataGridViewTextBoxColumn();
+            colSHA1 = new DataGridViewTextBoxColumn();
+            colSHA256 = new DataGridViewTextBoxColumn();
             lblFolder = new Label();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripProgressBar1 = new ToolStripProgressBar();
+            ttslLicznik = new ToolStripStatusLabel();
             txtHashWklejony = new TextBox();
             cmbHashe = new ComboBox();
             btnPorownaj = new Button();
             bgwFolder1 = new System.ComponentModel.BackgroundWorker();
             bgwFolder2 = new System.ComponentModel.BackgroundWorker();
-            lblLiczbaPlikow = new Label();
-            colPlik = new DataGridViewTextBoxColumn();
-            colMD5 = new DataGridViewTextBoxColumn();
-            colSHA1 = new DataGridViewTextBoxColumn();
-            colSHA256 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgwHashe).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -93,87 +93,9 @@
             dgwHashe.ReadOnly = true;
             dgwHashe.RowHeadersWidth = 51;
             dgwHashe.RowTemplate.Height = 29;
-            dgwHashe.Size = new Size(1224, 322);
+            dgwHashe.Size = new Size(1224, 479);
             dgwHashe.TabIndex = 2;
             dgwHashe.CellContentClick += dgwHashe_CellContentClick;
-            // 
-            // lblFolder
-            // 
-            lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(315, 16);
-            lblFolder.Name = "lblFolder";
-            lblFolder.Size = new Size(50, 20);
-            lblFolder.TabIndex = 3;
-            lblFolder.Text = "label1";
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.ImageScalingSize = new Size(20, 20);
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
-            statusStrip1.Location = new Point(0, 428);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1248, 22);
-            statusStrip1.TabIndex = 5;
-            statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(79, 20);
-            toolStripStatusLabel1.Text = "Obliczanie";
-            toolStripStatusLabel1.Visible = false;
-            // 
-            // toolStripProgressBar1
-            // 
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(500, 18);
-            toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
-            toolStripProgressBar1.Visible = false;
-            // 
-            // txtHashWklejony
-            // 
-            txtHashWklejony.Location = new Point(12, 387);
-            txtHashWklejony.Name = "txtHashWklejony";
-            txtHashWklejony.Size = new Size(694, 27);
-            txtHashWklejony.TabIndex = 6;
-            // 
-            // cmbHashe
-            // 
-            cmbHashe.FormattingEnabled = true;
-            cmbHashe.Items.AddRange(new object[] { "MD5", "SHA1", "SHA256" });
-            cmbHashe.Location = new Point(712, 386);
-            cmbHashe.Name = "cmbHashe";
-            cmbHashe.Size = new Size(151, 28);
-            cmbHashe.TabIndex = 7;
-            // 
-            // btnPorownaj
-            // 
-            btnPorownaj.Location = new Point(869, 385);
-            btnPorownaj.Name = "btnPorownaj";
-            btnPorownaj.Size = new Size(94, 29);
-            btnPorownaj.TabIndex = 8;
-            btnPorownaj.Text = "Porównaj";
-            btnPorownaj.UseVisualStyleBackColor = true;
-            btnPorownaj.Click += btnPorownaj_Click;
-            // 
-            // bgwFolder1
-            // 
-            bgwFolder1.DoWork += bgwFolder1_DoWork;
-            bgwFolder1.RunWorkerCompleted += bgwFolder1_RunWorkerCompleted;
-            // 
-            // bgwFolder2
-            // 
-            bgwFolder2.DoWork += bgwFolder2_DoWork;
-            bgwFolder2.RunWorkerCompleted += bgwFolder2_RunWorkerCompleted;
-            // 
-            // lblLiczbaPlikow
-            // 
-            lblLiczbaPlikow.AutoSize = true;
-            lblLiczbaPlikow.Location = new Point(259, 16);
-            lblLiczbaPlikow.Name = "lblLiczbaPlikow";
-            lblLiczbaPlikow.Size = new Size(50, 20);
-            lblLiczbaPlikow.TabIndex = 9;
-            lblLiczbaPlikow.Text = "label1";
             // 
             // colPlik
             // 
@@ -211,12 +133,87 @@
             colSHA256.ReadOnly = true;
             colSHA256.Width = 91;
             // 
+            // lblFolder
+            // 
+            lblFolder.AutoSize = true;
+            lblFolder.Location = new Point(259, 21);
+            lblFolder.Name = "lblFolder";
+            lblFolder.Size = new Size(49, 20);
+            lblFolder.TabIndex = 3;
+            lblFolder.Text = "folder";
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1, ttslLicznik });
+            statusStrip1.Location = new Point(0, 564);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1248, 22);
+            statusStrip1.TabIndex = 5;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(79, 20);
+            toolStripStatusLabel1.Text = "Obliczanie";
+            toolStripStatusLabel1.Visible = false;
+            // 
+            // toolStripProgressBar1
+            // 
+            toolStripProgressBar1.Name = "toolStripProgressBar1";
+            toolStripProgressBar1.Size = new Size(400, 18);
+            toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar1.Visible = false;
+            // 
+            // ttslLicznik
+            // 
+            ttslLicznik.Name = "ttslLicznik";
+            ttslLicznik.Size = new Size(31, 20);
+            ttslLicznik.Text = "0/0";
+            ttslLicznik.Visible = false;
+            // 
+            // txtHashWklejony
+            // 
+            txtHashWklejony.Location = new Point(12, 534);
+            txtHashWklejony.Name = "txtHashWklejony";
+            txtHashWklejony.Size = new Size(694, 27);
+            txtHashWklejony.TabIndex = 6;
+            // 
+            // cmbHashe
+            // 
+            cmbHashe.FormattingEnabled = true;
+            cmbHashe.Items.AddRange(new object[] { "MD5", "SHA1", "SHA256" });
+            cmbHashe.Location = new Point(712, 533);
+            cmbHashe.Name = "cmbHashe";
+            cmbHashe.Size = new Size(151, 28);
+            cmbHashe.TabIndex = 7;
+            // 
+            // btnPorownaj
+            // 
+            btnPorownaj.Location = new Point(869, 532);
+            btnPorownaj.Name = "btnPorownaj";
+            btnPorownaj.Size = new Size(94, 29);
+            btnPorownaj.TabIndex = 8;
+            btnPorownaj.Text = "Porównaj";
+            btnPorownaj.UseVisualStyleBackColor = true;
+            btnPorownaj.Click += btnPorownaj_Click;
+            // 
+            // bgwFolder1
+            // 
+            bgwFolder1.DoWork += bgwFolder1_DoWork;
+            bgwFolder1.RunWorkerCompleted += bgwFolder1_RunWorkerCompleted;
+            // 
+            // bgwFolder2
+            // 
+            bgwFolder2.DoWork += bgwFolder2_DoWork;
+            bgwFolder2.RunWorkerCompleted += bgwFolder2_RunWorkerCompleted;
+            // 
             // frmOknoGl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1248, 450);
-            Controls.Add(lblLiczbaPlikow);
+            ClientSize = new Size(1248, 586);
             Controls.Add(btnPorownaj);
             Controls.Add(cmbHashe);
             Controls.Add(txtHashWklejony);
@@ -252,10 +249,10 @@
         private Button btnPorownaj;
         private System.ComponentModel.BackgroundWorker bgwFolder1;
         private System.ComponentModel.BackgroundWorker bgwFolder2;
-        private Label lblLiczbaPlikow;
         private DataGridViewTextBoxColumn colPlik;
         private DataGridViewTextBoxColumn colMD5;
         private DataGridViewTextBoxColumn colSHA1;
         private DataGridViewTextBoxColumn colSHA256;
+        private ToolStripStatusLabel ttslLicznik;
     }
 }
