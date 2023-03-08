@@ -48,6 +48,8 @@
             btnPorownaj = new Button();
             bgwFolder1 = new System.ComponentModel.BackgroundWorker();
             bgwFolder2 = new System.ComponentModel.BackgroundWorker();
+            btnZapisz = new Button();
+            saveFileDialog1 = new SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)dgwHashe).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -136,7 +138,7 @@
             // lblFolder
             // 
             lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(259, 21);
+            lblFolder.Location = new Point(359, 16);
             lblFolder.Name = "lblFolder";
             lblFolder.Size = new Size(49, 20);
             lblFolder.TabIndex = 3;
@@ -209,11 +211,22 @@
             bgwFolder2.DoWork += bgwFolder2_DoWork;
             bgwFolder2.RunWorkerCompleted += bgwFolder2_RunWorkerCompleted;
             // 
+            // btnZapisz
+            // 
+            btnZapisz.Location = new Point(259, 12);
+            btnZapisz.Name = "btnZapisz";
+            btnZapisz.Size = new Size(94, 29);
+            btnZapisz.TabIndex = 9;
+            btnZapisz.Text = "Zapisz";
+            btnZapisz.UseVisualStyleBackColor = true;
+            btnZapisz.Click += btnZapisz_Click;
+            // 
             // frmOknoGl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1248, 586);
+            Controls.Add(btnZapisz);
             Controls.Add(btnPorownaj);
             Controls.Add(cmbHashe);
             Controls.Add(txtHashWklejony);
@@ -254,5 +267,7 @@
         private DataGridViewTextBoxColumn colSHA1;
         private DataGridViewTextBoxColumn colSHA256;
         private ToolStripStatusLabel ttslLicznik;
+        private Button btnZapisz;
+        private SaveFileDialog saveFileDialog1;
     }
 }

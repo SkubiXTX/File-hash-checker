@@ -282,5 +282,27 @@ namespace File_hash_checker_net_core
                 ttslLicznik.Visible = false;
             }
         }
+
+        private void btnZapisz_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Plik tekstowy (*.txt)|*.txt";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.Title = "Wska¿ plik";
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                using (StreamWriter outputFile = new StreamWriter(saveFileDialog1.FileName))
+                {
+                    for (int r = 0; r < dgwHashe.RowCount; r++)
+                    {
+                        for (int c = 0; c < dgwHashe.ColumnCount; c++)
+                        {
+                            outputFile.WriteLine(dgwHashe.Rows[r].Cells[c].Value.ToString());
+                        }
+                    }
+                }
+            }
+        }
     }
 }
