@@ -1,10 +1,10 @@
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Net.WebRequestMethods;
 
 namespace File_hash_checker_net_core
 {
@@ -330,6 +330,37 @@ namespace File_hash_checker_net_core
             {
                 plikhash = openFileDialog1.FileName;
 
+                using (TextFieldParser csvParser = new TextFieldParser(plikhash))
+                {
+                    csvParser.CommentTokens = new string[] { "#" };
+                    csvParser.SetDelimiters(new string[] { ";" });
+                    csvParser.HasFieldsEnclosedInQuotes = false;
+
+                    int i = 0;
+
+                    while (!csvParser.EndOfData)
+                    {
+                        string[] wiersz = csvParser.ReadFields();
+                        String sciezka = Path.GetDirectoryName(wiersz[0]);
+
+                        if (!sciezka.Equals(lblFolder.Text))
+                        {
+                            MessageBox.Show("Scie¿ka z pliku jest inna ni¿ œciezka akrualnie wybrana", "Komunikat", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        }
+
+                        if (wiersz[1].Equals(dgwHashe.Rows[i].Cells[1].Value.ToString()))
+                        {
+                            dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Green;
+                        }
+                        else
+                        {
+                            dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                        }
+
+                        i++;
+                    }
+                }
             }
         }
     }
