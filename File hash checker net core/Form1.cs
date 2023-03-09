@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.IO;
@@ -85,6 +86,8 @@ namespace File_hash_checker_net_core
             FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
             licz = 0;
             dgwHashe.Rows.Clear();
+            Array.Clear(fileNames, 0, fileNames.Length);
+            Array.Clear(fileEntries, 0, fileEntries.Length);
 
             if (folderBrowserDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -290,18 +293,22 @@ namespace File_hash_checker_net_core
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.Title = "Wska¿ plik";
 
+            String temp = "";
+
             if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 using (StreamWriter outputFile = new StreamWriter(saveFileDialog1.FileName))
                 {
                     for (int r = 0; r < dgwHashe.RowCount; r++)
                     {
-                        outputFile.WriteLine(fileEntries[r]);
+                        temp = "";
 
                         for (int c = 1; c < dgwHashe.ColumnCount; c++)
                         {
-                            outputFile.WriteLine(dgwHashe.Rows[r].Cells[c].Value.ToString());
+                            temp = temp + ";" + dgwHashe.Rows[r].Cells[c].Value.ToString();
                         }
+
+                        outputFile.WriteLine(fileEntries[r] + temp);
                     }
                 }
             }
@@ -310,6 +317,9 @@ namespace File_hash_checker_net_core
         private void btnOtwZapHash_Click(object sender, EventArgs e)
         {
             String plikhash = "";
+            string[] zawplik = new string[40000];
+            Array.Clear(fileNames, 0, fileNames.Length);
+            Array.Clear(fileEntries, 0, fileEntries.Length);
 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Plik tekstowy (*.txt)|*.txt";
@@ -319,16 +329,6 @@ namespace File_hash_checker_net_core
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 plikhash = openFileDialog1.FileName;
-
-                using (StreamReader reader = new StreamReader(plikhash))
-                {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        Debug.WriteLine(line);
-                    }
-                }
-
 
             }
         }
