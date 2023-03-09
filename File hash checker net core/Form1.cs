@@ -296,12 +296,40 @@ namespace File_hash_checker_net_core
                 {
                     for (int r = 0; r < dgwHashe.RowCount; r++)
                     {
-                        for (int c = 0; c < dgwHashe.ColumnCount; c++)
+                        outputFile.WriteLine(fileEntries[r]);
+
+                        for (int c = 1; c < dgwHashe.ColumnCount; c++)
                         {
                             outputFile.WriteLine(dgwHashe.Rows[r].Cells[c].Value.ToString());
                         }
                     }
                 }
+            }
+        }
+
+        private void btnOtwZapHash_Click(object sender, EventArgs e)
+        {
+            String plikhash = "";
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Plik tekstowy (*.txt)|*.txt";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Title = "Wska¿ plik z zapisanymi hashami";
+
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                plikhash = openFileDialog1.FileName;
+
+                using (StreamReader reader = new StreamReader(plikhash))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        Debug.WriteLine(line);
+                    }
+                }
+
+
             }
         }
     }

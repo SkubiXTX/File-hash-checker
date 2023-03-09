@@ -50,6 +50,7 @@
             bgwFolder2 = new System.ComponentModel.BackgroundWorker();
             btnZapisz = new Button();
             saveFileDialog1 = new SaveFileDialog();
+            btnOtwZapHash = new Button();
             ((System.ComponentModel.ISupportInitialize)dgwHashe).BeginInit();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -138,7 +139,7 @@
             // lblFolder
             // 
             lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(359, 16);
+            lblFolder.Location = new Point(459, 16);
             lblFolder.Name = "lblFolder";
             lblFolder.Size = new Size(49, 20);
             lblFolder.TabIndex = 3;
@@ -221,11 +222,22 @@
             btnZapisz.UseVisualStyleBackColor = true;
             btnZapisz.Click += btnZapisz_Click;
             // 
+            // btnOtwZapHash
+            // 
+            btnOtwZapHash.Location = new Point(359, 12);
+            btnOtwZapHash.Name = "btnOtwZapHash";
+            btnOtwZapHash.Size = new Size(94, 29);
+            btnOtwZapHash.TabIndex = 10;
+            btnOtwZapHash.Text = "Otwórz";
+            btnOtwZapHash.UseVisualStyleBackColor = true;
+            btnOtwZapHash.Click += btnOtwZapHash_Click;
+            // 
             // frmOknoGl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1248, 586);
+            Controls.Add(btnOtwZapHash);
             Controls.Add(btnZapisz);
             Controls.Add(btnPorownaj);
             Controls.Add(cmbHashe);
@@ -269,5 +281,6 @@
         private ToolStripStatusLabel ttslLicznik;
         private Button btnZapisz;
         private SaveFileDialog saveFileDialog1;
+        private Button btnOtwZapHash;
     }
 }
