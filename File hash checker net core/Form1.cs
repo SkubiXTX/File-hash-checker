@@ -312,6 +312,8 @@ namespace File_hash_checker_net_core
                     }
                 }
             }
+
+            MessageBox.Show("Plik zosta³ zapisany", "Komunikat", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnOtwZapHash_Click(object sender, EventArgs e)
@@ -349,19 +351,51 @@ namespace File_hash_checker_net_core
                             break;
                         }
 
-                        if (wiersz[1].Equals(dgwHashe.Rows[i].Cells[1].Value.ToString()))
+                        if (rdbMD5.Checked == true)
                         {
-                            dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Green;
+                            if (wiersz[1].Equals(dgwHashe.Rows[i].Cells[1].Value.ToString()))
+                            {
+                                dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                            } 
                         }
-                        else
+
+                        if (rdbSHA1.Checked == true)
                         {
-                            dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                            if (wiersz[2].Equals(dgwHashe.Rows[i].Cells[2].Value.ToString()))
+                            {
+                                dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                            }
+                        }
+
+                        if (rdbSHA256.Checked == true)
+                        {
+                            if (wiersz[3].Equals(dgwHashe.Rows[i].Cells[3].Value.ToString()))
+                            {
+                                dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                            }
                         }
 
                         i++;
                     }
                 }
             }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

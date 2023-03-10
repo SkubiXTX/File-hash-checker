@@ -51,8 +51,13 @@
             btnZapisz = new Button();
             saveFileDialog1 = new SaveFileDialog();
             btnOtwZapHash = new Button();
+            groupBox1 = new GroupBox();
+            rdbSHA256 = new RadioButton();
+            rdbSHA1 = new RadioButton();
+            rdbMD5 = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)dgwHashe).BeginInit();
             statusStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // bgwObliczHashe
@@ -96,7 +101,7 @@
             dgwHashe.ReadOnly = true;
             dgwHashe.RowHeadersWidth = 51;
             dgwHashe.RowTemplate.Height = 29;
-            dgwHashe.Size = new Size(1224, 479);
+            dgwHashe.Size = new Size(1224, 493);
             dgwHashe.TabIndex = 2;
             dgwHashe.CellContentClick += dgwHashe_CellContentClick;
             // 
@@ -139,7 +144,7 @@
             // lblFolder
             // 
             lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(459, 16);
+            lblFolder.Location = new Point(698, 16);
             lblFolder.Name = "lblFolder";
             lblFolder.Size = new Size(49, 20);
             lblFolder.TabIndex = 3;
@@ -149,7 +154,7 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1, ttslLicznik });
-            statusStrip1.Location = new Point(0, 564);
+            statusStrip1.Location = new Point(0, 578);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1248, 22);
             statusStrip1.TabIndex = 5;
@@ -178,7 +183,7 @@
             // 
             // txtHashWklejony
             // 
-            txtHashWklejony.Location = new Point(12, 534);
+            txtHashWklejony.Location = new Point(12, 548);
             txtHashWklejony.Name = "txtHashWklejony";
             txtHashWklejony.Size = new Size(694, 27);
             txtHashWklejony.TabIndex = 6;
@@ -187,14 +192,14 @@
             // 
             cmbHashe.FormattingEnabled = true;
             cmbHashe.Items.AddRange(new object[] { "MD5", "SHA1", "SHA256" });
-            cmbHashe.Location = new Point(712, 533);
+            cmbHashe.Location = new Point(712, 547);
             cmbHashe.Name = "cmbHashe";
             cmbHashe.Size = new Size(151, 28);
             cmbHashe.TabIndex = 7;
             // 
             // btnPorownaj
             // 
-            btnPorownaj.Location = new Point(869, 532);
+            btnPorownaj.Location = new Point(869, 546);
             btnPorownaj.Name = "btnPorownaj";
             btnPorownaj.Size = new Size(94, 29);
             btnPorownaj.TabIndex = 8;
@@ -232,11 +237,57 @@
             btnOtwZapHash.UseVisualStyleBackColor = true;
             btnOtwZapHash.Click += btnOtwZapHash_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rdbSHA256);
+            groupBox1.Controls.Add(rdbSHA1);
+            groupBox1.Controls.Add(rdbMD5);
+            groupBox1.Location = new Point(459, -2);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(233, 43);
+            groupBox1.TabIndex = 11;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Hashe";
+            // 
+            // rdbSHA256
+            // 
+            rdbSHA256.AutoSize = true;
+            rdbSHA256.Location = new Point(147, 16);
+            rdbSHA256.Name = "rdbSHA256";
+            rdbSHA256.Size = new Size(83, 24);
+            rdbSHA256.TabIndex = 2;
+            rdbSHA256.Text = "SHA256";
+            rdbSHA256.UseVisualStyleBackColor = true;
+            // 
+            // rdbSHA1
+            // 
+            rdbSHA1.AutoSize = true;
+            rdbSHA1.Location = new Point(74, 16);
+            rdbSHA1.Name = "rdbSHA1";
+            rdbSHA1.Size = new Size(67, 24);
+            rdbSHA1.TabIndex = 1;
+            rdbSHA1.Text = "SHA1";
+            rdbSHA1.UseVisualStyleBackColor = true;
+            // 
+            // rdbMD5
+            // 
+            rdbMD5.AutoSize = true;
+            rdbMD5.Checked = true;
+            rdbMD5.Location = new Point(6, 16);
+            rdbMD5.Name = "rdbMD5";
+            rdbMD5.Size = new Size(62, 24);
+            rdbMD5.TabIndex = 0;
+            rdbMD5.TabStop = true;
+            rdbMD5.Text = "MD5";
+            rdbMD5.UseVisualStyleBackColor = true;
+            rdbMD5.CheckedChanged += radioButton1_CheckedChanged;
+            // 
             // frmOknoGl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1248, 586);
+            ClientSize = new Size(1248, 600);
+            Controls.Add(groupBox1);
             Controls.Add(btnOtwZapHash);
             Controls.Add(btnZapisz);
             Controls.Add(btnPorownaj);
@@ -253,6 +304,8 @@
             ((System.ComponentModel.ISupportInitialize)dgwHashe).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -282,5 +335,9 @@
         private Button btnZapisz;
         private SaveFileDialog saveFileDialog1;
         private Button btnOtwZapHash;
+        private GroupBox groupBox1;
+        private RadioButton rdbMD5;
+        private RadioButton rdbSHA256;
+        private RadioButton rdbSHA1;
     }
 }
