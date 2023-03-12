@@ -154,6 +154,7 @@ namespace File_hash_checker_net_core
         {
             DataGridViewSelectedRowCollection wybranywiersz = null;
             wybranywiersz = dgwHashe.SelectedRows;
+            txtHashWklejony.Text = txtHashWklejony.Text.ToLower();
 
             if (wybranywiersz.Count != 0)
             {
@@ -360,7 +361,7 @@ namespace File_hash_checker_net_core
                             else
                             {
                                 dgwHashe.Rows[i].Cells[0].Style.BackColor = Color.Red;
-                            } 
+                            }
                         }
 
                         if (rdbSHA1.Checked == true)

@@ -68,9 +68,10 @@
             // 
             // btnOtworz
             // 
-            btnOtworz.Location = new Point(12, 12);
+            btnOtworz.Location = new Point(10, 9);
+            btnOtworz.Margin = new Padding(3, 2, 3, 2);
             btnOtworz.Name = "btnOtworz";
-            btnOtworz.Size = new Size(111, 29);
+            btnOtworz.Size = new Size(97, 22);
             btnOtworz.TabIndex = 0;
             btnOtworz.Text = "Wybierz Plik";
             btnOtworz.UseVisualStyleBackColor = true;
@@ -82,9 +83,10 @@
             // 
             // btnFolder
             // 
-            btnFolder.Location = new Point(129, 12);
+            btnFolder.Location = new Point(113, 9);
+            btnFolder.Margin = new Padding(3, 2, 3, 2);
             btnFolder.Name = "btnFolder";
-            btnFolder.Size = new Size(124, 29);
+            btnFolder.Size = new Size(108, 22);
             btnFolder.TabIndex = 1;
             btnFolder.Text = "WybierzFolder";
             btnFolder.UseVisualStyleBackColor = true;
@@ -96,12 +98,13 @@
             dgwHashe.AllowUserToDeleteRows = false;
             dgwHashe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgwHashe.Columns.AddRange(new DataGridViewColumn[] { colPlik, colMD5, colSHA1, colSHA256 });
-            dgwHashe.Location = new Point(12, 47);
+            dgwHashe.Location = new Point(10, 35);
+            dgwHashe.Margin = new Padding(3, 2, 3, 2);
             dgwHashe.Name = "dgwHashe";
             dgwHashe.ReadOnly = true;
             dgwHashe.RowHeadersWidth = 51;
             dgwHashe.RowTemplate.Height = 29;
-            dgwHashe.Size = new Size(1224, 493);
+            dgwHashe.Size = new Size(1071, 370);
             dgwHashe.TabIndex = 2;
             dgwHashe.CellContentClick += dgwHashe_CellContentClick;
             // 
@@ -121,7 +124,7 @@
             colMD5.MinimumWidth = 6;
             colMD5.Name = "colMD5";
             colMD5.ReadOnly = true;
-            colMD5.Width = 70;
+            colMD5.Width = 57;
             // 
             // colSHA1
             // 
@@ -130,7 +133,7 @@
             colSHA1.MinimumWidth = 6;
             colSHA1.Name = "colSHA1";
             colSHA1.ReadOnly = true;
-            colSHA1.Width = 75;
+            colSHA1.Width = 61;
             // 
             // colSHA256
             // 
@@ -139,14 +142,14 @@
             colSHA256.MinimumWidth = 6;
             colSHA256.Name = "colSHA256";
             colSHA256.ReadOnly = true;
-            colSHA256.Width = 91;
+            colSHA256.Width = 73;
             // 
             // lblFolder
             // 
             lblFolder.AutoSize = true;
-            lblFolder.Location = new Point(698, 16);
+            lblFolder.Location = new Point(611, 12);
             lblFolder.Name = "lblFolder";
-            lblFolder.Size = new Size(49, 20);
+            lblFolder.Size = new Size(38, 15);
             lblFolder.TabIndex = 3;
             lblFolder.Text = "folder";
             // 
@@ -154,54 +157,58 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1, ttslLicznik });
-            statusStrip1.Location = new Point(0, 578);
+            statusStrip1.Location = new Point(0, 445);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1248, 22);
+            statusStrip1.Padding = new Padding(1, 0, 12, 0);
+            statusStrip1.Size = new Size(1092, 22);
             statusStrip1.TabIndex = 5;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            toolStripStatusLabel1.Size = new Size(79, 20);
+            toolStripStatusLabel1.Size = new Size(62, 17);
             toolStripStatusLabel1.Text = "Obliczanie";
             toolStripStatusLabel1.Visible = false;
             // 
             // toolStripProgressBar1
             // 
             toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(400, 18);
+            toolStripProgressBar1.Size = new Size(350, 16);
             toolStripProgressBar1.Style = ProgressBarStyle.Marquee;
             toolStripProgressBar1.Visible = false;
             // 
             // ttslLicznik
             // 
             ttslLicznik.Name = "ttslLicznik";
-            ttslLicznik.Size = new Size(31, 20);
+            ttslLicznik.Size = new Size(24, 17);
             ttslLicznik.Text = "0/0";
             ttslLicznik.Visible = false;
             // 
             // txtHashWklejony
             // 
-            txtHashWklejony.Location = new Point(12, 548);
+            txtHashWklejony.Location = new Point(10, 411);
+            txtHashWklejony.Margin = new Padding(3, 2, 3, 2);
             txtHashWklejony.Name = "txtHashWklejony";
-            txtHashWklejony.Size = new Size(694, 27);
+            txtHashWklejony.Size = new Size(608, 23);
             txtHashWklejony.TabIndex = 6;
             // 
             // cmbHashe
             // 
             cmbHashe.FormattingEnabled = true;
             cmbHashe.Items.AddRange(new object[] { "MD5", "SHA1", "SHA256" });
-            cmbHashe.Location = new Point(712, 547);
+            cmbHashe.Location = new Point(623, 410);
+            cmbHashe.Margin = new Padding(3, 2, 3, 2);
             cmbHashe.Name = "cmbHashe";
-            cmbHashe.Size = new Size(151, 28);
+            cmbHashe.Size = new Size(133, 23);
             cmbHashe.TabIndex = 7;
             // 
             // btnPorownaj
             // 
-            btnPorownaj.Location = new Point(869, 546);
+            btnPorownaj.Location = new Point(760, 410);
+            btnPorownaj.Margin = new Padding(3, 2, 3, 2);
             btnPorownaj.Name = "btnPorownaj";
-            btnPorownaj.Size = new Size(94, 29);
+            btnPorownaj.Size = new Size(82, 22);
             btnPorownaj.TabIndex = 8;
             btnPorownaj.Text = "Porównaj";
             btnPorownaj.UseVisualStyleBackColor = true;
@@ -219,9 +226,10 @@
             // 
             // btnZapisz
             // 
-            btnZapisz.Location = new Point(259, 12);
+            btnZapisz.Location = new Point(227, 9);
+            btnZapisz.Margin = new Padding(3, 2, 3, 2);
             btnZapisz.Name = "btnZapisz";
-            btnZapisz.Size = new Size(94, 29);
+            btnZapisz.Size = new Size(82, 22);
             btnZapisz.TabIndex = 9;
             btnZapisz.Text = "Zapisz";
             btnZapisz.UseVisualStyleBackColor = true;
@@ -229,9 +237,10 @@
             // 
             // btnOtwZapHash
             // 
-            btnOtwZapHash.Location = new Point(359, 12);
+            btnOtwZapHash.Location = new Point(314, 9);
+            btnOtwZapHash.Margin = new Padding(3, 2, 3, 2);
             btnOtwZapHash.Name = "btnOtwZapHash";
-            btnOtwZapHash.Size = new Size(94, 29);
+            btnOtwZapHash.Size = new Size(82, 22);
             btnOtwZapHash.TabIndex = 10;
             btnOtwZapHash.Text = "Otwórz";
             btnOtwZapHash.UseVisualStyleBackColor = true;
@@ -242,9 +251,11 @@
             groupBox1.Controls.Add(rdbSHA256);
             groupBox1.Controls.Add(rdbSHA1);
             groupBox1.Controls.Add(rdbMD5);
-            groupBox1.Location = new Point(459, -2);
+            groupBox1.Location = new Point(402, -2);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(233, 43);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(204, 32);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             groupBox1.Text = "Hashe";
@@ -252,9 +263,10 @@
             // rdbSHA256
             // 
             rdbSHA256.AutoSize = true;
-            rdbSHA256.Location = new Point(147, 16);
+            rdbSHA256.Location = new Point(129, 12);
+            rdbSHA256.Margin = new Padding(3, 2, 3, 2);
             rdbSHA256.Name = "rdbSHA256";
-            rdbSHA256.Size = new Size(83, 24);
+            rdbSHA256.Size = new Size(66, 19);
             rdbSHA256.TabIndex = 2;
             rdbSHA256.Text = "SHA256";
             rdbSHA256.UseVisualStyleBackColor = true;
@@ -262,9 +274,10 @@
             // rdbSHA1
             // 
             rdbSHA1.AutoSize = true;
-            rdbSHA1.Location = new Point(74, 16);
+            rdbSHA1.Location = new Point(65, 12);
+            rdbSHA1.Margin = new Padding(3, 2, 3, 2);
             rdbSHA1.Name = "rdbSHA1";
-            rdbSHA1.Size = new Size(67, 24);
+            rdbSHA1.Size = new Size(54, 19);
             rdbSHA1.TabIndex = 1;
             rdbSHA1.Text = "SHA1";
             rdbSHA1.UseVisualStyleBackColor = true;
@@ -273,9 +286,10 @@
             // 
             rdbMD5.AutoSize = true;
             rdbMD5.Checked = true;
-            rdbMD5.Location = new Point(6, 16);
+            rdbMD5.Location = new Point(5, 12);
+            rdbMD5.Margin = new Padding(3, 2, 3, 2);
             rdbMD5.Name = "rdbMD5";
-            rdbMD5.Size = new Size(62, 24);
+            rdbMD5.Size = new Size(50, 19);
             rdbMD5.TabIndex = 0;
             rdbMD5.TabStop = true;
             rdbMD5.Text = "MD5";
@@ -284,9 +298,9 @@
             // 
             // frmOknoGl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1248, 600);
+            ClientSize = new Size(1092, 467);
             Controls.Add(groupBox1);
             Controls.Add(btnOtwZapHash);
             Controls.Add(btnZapisz);
@@ -298,6 +312,7 @@
             Controls.Add(dgwHashe);
             Controls.Add(btnFolder);
             Controls.Add(btnOtworz);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmOknoGl";
             Text = "Form1";
             Load += frmOknoGl_Load;
