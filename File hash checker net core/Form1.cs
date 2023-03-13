@@ -31,7 +31,7 @@ namespace File_hash_checker_net_core
                 using (var stream = System.IO.File.OpenRead(filename))
                 {
                     var hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    return BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace File_hash_checker_net_core
                 using (var stream = System.IO.File.OpenRead(filename))
                 {
                     var hash = sha1.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    return BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace File_hash_checker_net_core
                 using (var stream = System.IO.File.OpenRead(filename))
                 {
                     var hash = sha256.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+                    return BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace File_hash_checker_net_core
         {
             DataGridViewSelectedRowCollection wybranywiersz = null;
             wybranywiersz = dgwHashe.SelectedRows;
-            txtHashWklejony.Text = txtHashWklejony.Text.ToLower();
+            txtHashWklejony.Text = txtHashWklejony.Text.ToUpper();
 
             if (wybranywiersz.Count != 0)
             {
