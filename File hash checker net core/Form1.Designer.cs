@@ -298,6 +298,7 @@
             // 
             // frmOknoGl
             // 
+            AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1092, 467);
@@ -316,6 +317,8 @@
             Name = "frmOknoGl";
             Text = "Form1";
             Load += frmOknoGl_Load;
+            DragDrop += frmOknoGl_DragDrop;
+            DragEnter += frmOknoGl_DragEnter;
             ((System.ComponentModel.ISupportInitialize)dgwHashe).EndInit();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();

@@ -398,5 +398,50 @@ namespace File_hash_checker_net_core
         {
 
         }
+
+        private void frmOknoGl_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void frmOknoGl_DragDrop(object sender, DragEventArgs e)
+        {
+            String sciezka = "";
+
+            string[] pliki = (string[])e.Data.GetData(DataFormats.FileDrop);
+            sciezka = pliki[0];
+
+            toolStripProgressBar1.Visible = true;
+            toolStripStatusLabel1.Visible = true;
+
+            FileAttributes attr = File.GetAttributes(sciezka);
+
+            if (attr.HasFlag(FileAttributes.Directory))
+            {
+                licz = 0;
+                dgwHashe.Rows.Clear();
+                DirectoryInfo info = new DirectoryInfo(sciezka);
+                FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
+                lblFolder.Text = sciezka;
+
+                foreach (FileInfo file in files)
+                {
+                    fileEntries[licz] = sciezka + "\\" + file.Name;
+                    fileNames[licz] = file.Name;
+                    licz++;
+                }
+
+                toolStripProgressBar1.Visible = true;
+                toolStripStatusLabel1.Visible = true;
+                ttslLicznik.Visible = true;
+                bgwFolder1.RunWorkerAsync(fileEntries[licz2]);
+            }
+            else
+            {
+                plik = sciezka;
+                bgwObliczHashe.RunWorkerAsync(sciezka);
+            }
+        
+        }
     }
 }
