@@ -1,10 +1,6 @@
 using Microsoft.VisualBasic.FileIO;
-using System;
 using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.IO;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace File_hash_checker_net_core
 {
@@ -218,6 +214,45 @@ namespace File_hash_checker_net_core
             cmbHashe.SelectedIndex = 0;
             dgwHashe.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             dgwHashe.RowTemplate.Height = 96;
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            if (args.Length == 2)
+            {
+                String sciezka = "";
+                toolStripProgressBar1.Visible = true;
+                toolStripStatusLabel1.Visible = true;
+
+                sciezka = args[1];
+                FileAttributes attr = File.GetAttributes(sciezka);
+
+                if (attr.HasFlag(FileAttributes.Directory))
+                {
+                    licz = 0;
+                    dgwHashe.Rows.Clear();
+                    DirectoryInfo info = new DirectoryInfo(sciezka);
+                    FileInfo[] files = info.GetFiles().OrderByDescending(p => p.CreationTime).ToArray();
+                    lblFolder.Text = sciezka;
+
+                    foreach (FileInfo file in files)
+                    {
+                        fileEntries[licz] = sciezka + "\\" + file.Name;
+                        fileNames[licz] = file.Name;
+                        licz++;
+                    }
+
+                    toolStripProgressBar1.Visible = true;
+                    toolStripStatusLabel1.Visible = true;
+                    ttslLicznik.Visible = true;
+                    bgwFolder1.RunWorkerAsync(fileEntries[licz2]);
+                }
+                else
+                {
+                    plik = sciezka;
+                    bgwObliczHashe.RunWorkerAsync(sciezka);
+                }
+
+            }
         }
 
         private void bgwFolder1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -410,7 +445,6 @@ namespace File_hash_checker_net_core
 
             string[] pliki = (string[])e.Data.GetData(DataFormats.FileDrop);
             sciezka = pliki[0];
-
             toolStripProgressBar1.Visible = true;
             toolStripStatusLabel1.Visible = true;
 
@@ -441,7 +475,7 @@ namespace File_hash_checker_net_core
                 plik = sciezka;
                 bgwObliczHashe.RunWorkerAsync(sciezka);
             }
-        
+
         }
     }
 }

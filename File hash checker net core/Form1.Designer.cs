@@ -197,7 +197,7 @@
             // 
             cmbHashe.FormattingEnabled = true;
             cmbHashe.Items.AddRange(new object[] { "MD5", "SHA1", "SHA256" });
-            cmbHashe.Location = new Point(623, 410);
+            cmbHashe.Location = new Point(624, 411);
             cmbHashe.Margin = new Padding(3, 2, 3, 2);
             cmbHashe.Name = "cmbHashe";
             cmbHashe.Size = new Size(133, 23);
@@ -205,7 +205,7 @@
             // 
             // btnPorownaj
             // 
-            btnPorownaj.Location = new Point(760, 410);
+            btnPorownaj.Location = new Point(763, 412);
             btnPorownaj.Margin = new Padding(3, 2, 3, 2);
             btnPorownaj.Name = "btnPorownaj";
             btnPorownaj.Size = new Size(82, 22);
