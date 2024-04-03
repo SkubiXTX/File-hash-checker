@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOknoGl));
             bgwObliczHashe = new System.ComponentModel.BackgroundWorker();
             btnOtworz = new Button();
             openFileDialog1 = new OpenFileDialog();
@@ -313,9 +314,10 @@
             Controls.Add(dgwHashe);
             Controls.Add(btnFolder);
             Controls.Add(btnOtworz);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmOknoGl";
-            Text = "Form1";
+            Text = "File Hash Checker";
             Load += frmOknoGl_Load;
             DragDrop += frmOknoGl_DragDrop;
             DragEnter += frmOknoGl_DragEnter;
